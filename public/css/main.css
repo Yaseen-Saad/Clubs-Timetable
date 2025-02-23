@@ -1,0 +1,234 @@
+@font-face {
+    font-family: Comic;
+    src: url(/comici.ttf);
+  }
+
+  /* Global styles */
+  :root {
+    --Main_Color: #fff;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+  }
+
+  body {
+    margin: 0;
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  /* Loader */
+  .loader-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: 0.5s ease-in-out;
+    background-color: var(--Main_Color);
+  }
+
+  .loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loader img {
+    width: 30%;
+  }
+
+  .loader h1 {
+    font-family: "Oswald", sans-serif, "Poor Story", system-ui, Comic;
+    color: #333;
+    font-size: 3rem;
+    font-weight: 100;
+    line-height: 1.5;
+  }
+
+  .loader h1 span {
+    font-size: 40px;
+    margin-left: 40px;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 10%;
+    background-color: #1c1a3c;
+    z-index: 120;
+    font-family: Comic;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    color: var(--Main_Color);
+    font-family: "Oswald", sans-serif;
+  }
+
+  nav .container > div {
+    display: flex;
+    align-items: center;
+  }
+
+  nav .container > div p {
+    margin: 5px;
+  }
+
+  nav .container ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  nav .container ul li {
+    margin-left: 20px;
+  }
+
+  nav .container ul li a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Section styling */
+  main > section {
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Use a minimum height to allow for scrolling when needed */
+    min-height: 100vh;
+  }
+
+  main > section .container {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--Main_Color);
+    font-size: 2rem;
+    font-family: "Oswald", sans-serif, "Poor Story", system-ui, Comic;
+    text-align: center;
+  }
+
+  main > section .container h1 {
+    font-weight: normal;
+  }
+
+  main > section .container h1 #STEMOctoberWord {
+    font-weight: 900 !important;
+    background-color: #6c00f7;
+    padding: 3px 5px;
+  }
+
+  main > section > :not(.overlayer) {
+    z-index: 3;
+  }
+
+  .overlayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  /* Table responsive wrapper */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+
+  /* Table styling */
+  table {
+    width: 100%;
+    min-width: 600px; /* Adjust this value based on your content */
+    border-collapse: collapse;
+    background: linear-gradient(135deg, #1c1a3c, #000);
+    color: #fff;
+    border-radius: 15px;
+  }
+
+  th,
+  td {
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+
+  th {
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
+  td {
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+  }
+
+  td:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    nav {
+      padding: 5px 5%;
+    }
+    nav .container {
+      flex-direction: column;
+      height: auto;
+      padding: 10px 0;
+    }
+    nav .container ul {
+      flex-direction: column;
+      width: 100%;
+    }
+    nav .container ul li {
+      margin: 10px 0;
+    }
+    table {
+      font-size: 14px;
+    }
+    /* Allow the container to expand if content overflows */
+    main > section .container {
+      min-height: auto;
+    }
+    .loader h1 {
+      font-size: 2rem;
+    }
+    .loader img {
+      width: 50%;
+    }
+  }
+  body{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+  background-image: url(/STEM\ High\ School\ for\ Boys\ -\ 6th\ of\ October.jpg);
+  }

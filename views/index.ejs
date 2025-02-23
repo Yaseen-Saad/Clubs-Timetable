@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Table | October Clubs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Poor+Story&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+  <div class="loader-container">
+    <div class="loader">
+      <img src="/logo zengy.png" alt="Logo" />
+      <h1 id="loaderText"><span>A Place to </span></h1>
+    </div>
+  </div>
+
+  <main>
+    <nav>
+      <div class="container">
+        <img src="/STEM_logo_reversed.png" alt="STEM Logo" />
+        <div>
+          <p>STEM School for Boys</p>
+          <p>6th of October</p>
+        </div>
+    </nav>
+
+    <div style="margin: 250px 20px;" class="container">
+      <div id="mainn">
+        <!-- Card wrapper for responsive table -->
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead id="table-head"></thead>
+              <tbody id="table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+<script>
+    const API_KEY = "<%= apiKey %>"; // Access the API key from the server-side
+    const spreadsheetId = "<%= spreedsheetId %>"
+   </script>
+
+  <script type="text/javascript" src="/js/mdb.min.js"></script>
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script type="text/javascript" src="/js/easyData-google-sheets.js"></script>
+  <script>
+
+    function displayResult2(response) {
+      let tableHead = "";
+      let tableBody = "";
+      response.result.values.forEach((row, index) => {
+        if (index === 0) {
+          tableHead += "<tr>";
+          row.forEach((val) => (tableHead += "<th>" + val + "</th>"));
+          tableHead += "</tr>";
+        } else {
+          tableBody += "<tr>";
+          row.forEach((val) => (tableBody += "<td>" + val + "</td>"));
+          tableBody += "</tr>";
+        }
+      });
+      document.getElementById("table-head").innerHTML = tableHead;
+      document.getElementById("table-body").innerHTML = tableBody;
+    }
+
+    function loadData() {
+      const range = "A:Z";
+      getPublicValues({
+        spreadsheetId,
+        range
+      }, displayResult2);
+    }
+
+    window.addEventListener("load", () => {
+      initOAuthClient({
+        apiKey: API_KEY
+      });
+    });
+
+    document.addEventListener("gapi-loaded", () => {
+      loadData();
+    });
+  </script>
+
+  <script src="/typeit.js"></script>
+  <script>
+    let supportsPassive = false;
+    try {
+      window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+        get: function() {
+          supportsPassive = true;
+        }
+      }));
+    } catch (e) {}
+    let wheelEvent = "onwheel" in document.createElement("div") ? "wheel" : "mousewheel";
+    let wheelOpt = supportsPassive ? {
+      passive: false
+    } : false;
+
+    function preventDefault(e) {
+      e.preventDefault();
+    }
+
+    function disableScroll() {
+      window.addEventListener("DOMMouseScroll", preventDefault, false);
+      window.addEventListener(wheelEvent, preventDefault, wheelOpt);
+      window.addEventListener("touchmove", preventDefault, wheelOpt);
+      window.addEventListener("keydown", preventDefault, false);
+    }
+    disableScroll();
+
+    function enableScroll() {
+      window.removeEventListener("DOMMouseScroll", preventDefault, false);
+      window.removeEventListener(wheelEvent, preventDefault);
+      window.removeEventListener("touchmove", preventDefault);
+      window.removeEventListener("keydown", preventDefault, false);
+    }
+
+    const animationInLoader = new TypeIt("h1#loaderText", {
+        speed: 10,
+      })
+      .type("Think")
+      .pause(1000)
+      .delete(5)
+      .type("Innovate")
+      .pause(1000)
+      .delete(8)
+      .type("Thrive")
+      .go();
+
+    setTimeout(() => {
+      const loader = document.querySelector(".loader-container");
+      loader.style.top = "-100%";
+      setTimeout(() => {
+        loader.remove();
+        enableScroll();
+      }, 1000);
+    }, 4300);
+  </script>
+</body>
+
+</html>
